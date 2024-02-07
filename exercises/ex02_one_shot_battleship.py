@@ -1,4 +1,4 @@
-"""EX02 - One Shot Battleship"""
+"""EX02 - One Shot Battleship."""
 
 __author__ = "730676554"
 
@@ -12,11 +12,11 @@ WHITE_BOX: str = "\U00002B1C"
 result: str = ""
 
 row_guess: int = int(input("Guess a row: "))
-while row_guess > size:
+while row_guess > size or row_guess < 1:
     row_guess = int(input(f'The grid is only {size} by {size}. Try again: '))
     
 column_guess: int = int(input("Guess a column: "))
-while column_guess > size:
+while column_guess > size or column_guess < 1:
     column_guess = int(input(f'The grid is only {size} by {size}. Try again: '))
 
 if column_guess == secret_column and row_guess == secret_row:
