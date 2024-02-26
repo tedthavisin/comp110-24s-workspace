@@ -4,22 +4,24 @@ __author__ = "730676554"
 
 import random
 
+
 def input_guess(size: int, type: str) -> int:
+    """Inputs user's guess."""
     assert type == "row" or type == "column"
     guess: int = int(input(f'Guess a {type}: '))
     while guess < 1 or guess > size:
-        guess: int = int(input(f'The grid is only {size} by {size}. Try again: '))
+        guess = int(input(f'The grid is only {size} by {size}. Try again: '))
     return guess
 
 
 def print_grid(size: int, row_guess: int, column_guess: int, user_guess: bool) -> None:
-
+    """Prints out the emojis for the grid."""
     BLUE_BOX: str = "\U0001F7E6"
     RED_BOX: str = "\U0001F7E5"
     WHITE_BOX: str = "\U00002B1C"
-    result: int = ""
+    result: str = ""
 
-    if user_guess == True:
+    if user_guess:
         result = RED_BOX
     else:
         result = WHITE_BOX
@@ -44,12 +46,15 @@ def print_grid(size: int, row_guess: int, column_guess: int, user_guess: bool) -
 
 
 def correct_guess(secret_row: int, secret_column: int, row_guess: int, column_guess: int) -> bool:
+    """Checks if user's guess is correct."""
     if secret_row == row_guess and secret_column == column_guess:
         return True
     else:
         return False
-    
+
+
 def main(grid_size: int, secret_row: int, secret_column: int) -> None:
+    """Runs main."""
     row: int = secret_row
     column: int = secret_column
     size: int = grid_size
@@ -58,13 +63,13 @@ def main(grid_size: int, secret_row: int, secret_column: int) -> None:
     turn_counter: int = 1
     win: bool = False
     
-    while turn_counter <= 5 and win == False:
+    while turn_counter <= 5 and win is False:
         print(f'=== Turn {turn_counter}/5 ===')
         user_row_guess = input_guess(size, "row")
         user_column_guess = input_guess(size, "column")
         user: bool = correct_guess(row, column, user_row_guess, user_column_guess)
         print_grid(size, user_row_guess, user_column_guess, user)
-        if user == True:
+        if user:
             print("Hit!")
             print(f'You won in {turn_counter}/5 turns!')
             win = True
@@ -74,6 +79,7 @@ def main(grid_size: int, secret_row: int, secret_column: int) -> None:
         if turn_counter == 6:
             print("X/5 - Better luck next time!")
 
+
 if __name__ == "__main__":
-        grid_size: int = random.randint(3, 5)
-        main(grid_size, random.randint(1, grid_size), random.randint(1, grid_size))
+    grid_size: int = random.randint(3, 5)
+    main(grid_size, random.randint(1, grid_size), random.randint(1, grid_size))
