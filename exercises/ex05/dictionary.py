@@ -22,7 +22,7 @@ def favorite_color(x: dict[str, str]) -> str:
         else:
             color[x[key]] = 1
     highest: int = 0
-    frequent_color: dict[str, str] = {}
+    frequent_color: str = ""
     for key in color:
         if color[key] > highest:
             highest = color[key]
@@ -45,20 +45,17 @@ def alphabetizer(x: list[str]) -> dict[str, list[str]]:
     """Produces dictionary where each key is a letter."""
     abet: dict[str, list[str]] = {}
     for word in x:
-        if word[0] in abet:
-            abet[word[0]].append(word)
+        if word[0].lower() in abet:
+            abet[word[0].lower()].append(word)
         else:
-            abet[word[0]] = word
+            abet[word[0].lower()] = [word]
     return abet
 
 
-def update_attendance(x: dict[str, list[str]], day: str, student: str) -> dict[str, list[str]]:
+def update_attendance(x: dict[str, list[str]], day: str, student: str) -> None:
     """Updates attendance."""
     if day in x:
-        x[day].append(student)
+        if student not in x[day]:
+            x[day].append(student)
     else:
         x[day] = [student]
-    return x
-
-
-
