@@ -7,3 +7,5 @@ for key in in_stock:
     # in_stock[key] is values; True False True
     if in_stock[key]: #in_stock[key] is True
         print(key)
+
+

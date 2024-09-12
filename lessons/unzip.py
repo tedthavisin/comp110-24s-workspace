@@ -17,3 +17,9 @@ def get_values(x: dict[str, int]) -> list[int]:
     for key in x:
         new_list.append(x[key])
     return new_list
+
+my_l: list[str] = ["C", "l", "o", "t", "h", "i", "n", "g"]
+for i in my_l:
+    print(i)
+
+
